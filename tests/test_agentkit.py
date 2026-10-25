@@ -80,9 +80,7 @@ class ArtifactTests(unittest.TestCase):
                 }
             ],
         }
-        self.assertTrue(
-            any("ausente" in e for e in agentkit.validate("plan", data))
-        )
+        self.assertTrue(any("ausente" in e for e in agentkit.validate("plan", data)))
 
     def test_review_rejects_self_approval(self):
         data = {
@@ -125,9 +123,7 @@ class ArtifactTests(unittest.TestCase):
             "status": "passed",
             "scenarios": [{"id": "T1", "result": "not_run", "evidence": ""}],
         }
-        self.assertTrue(
-            any("todos" in e for e in agentkit.validate("qa", data))
-        )
+        self.assertTrue(any("todos" in e for e in agentkit.validate("qa", data)))
 
     def test_qa_requires_evidence_for_pass(self):
         data = {
@@ -138,9 +134,7 @@ class ArtifactTests(unittest.TestCase):
             "status": "passed",
             "scenarios": [{"id": "T1", "result": "passed", "evidence": ""}],
         }
-        self.assertTrue(
-            any("evidência" in e for e in agentkit.validate("qa", data))
-        )
+        self.assertTrue(any("evidência" in e for e in agentkit.validate("qa", data)))
 
     def test_reject_unknown_document_kind(self):
         self.assertTrue(agentkit.validate("something", {}))
@@ -156,9 +150,7 @@ class GateTests(unittest.TestCase):
         self.folder.cleanup()
 
     def write(self, kind, data):
-        (self.root / f"{kind}.json").write_text(
-            json.dumps(data), encoding="utf-8"
-        )
+        (self.root / f"{kind}.json").write_text(json.dumps(data), encoding="utf-8")
 
     def valid_bundle(self):
         self.write(
@@ -262,18 +254,20 @@ class InspectionTests(unittest.TestCase):
 
 class ScopeTests(unittest.TestCase):
     def test_scope_allowlist(self):
-        with patch.object(agentkit, "changed_files", return_value=[
-            "src/api.py",
-            "README.md",
-        ]):
+        with patch.object(
+            agentkit,
+            "changed_files",
+            return_value=[
+                "src/api.py",
+                "README.md",
+            ],
+        ):
             output = agentkit.scope_check(Path("."), "main", ["src/*.py"])
         self.assertEqual(output["status"], "OUT_OF_SCOPE")
         self.assertEqual(output["unexpected"], ["README.md"])
 
     def test_scope_passes_when_all_paths_match(self):
-        with patch.object(
-            agentkit, "changed_files", return_value=["src/api.py"]
-        ):
+        with patch.object(agentkit, "changed_files", return_value=["src/api.py"]):
             output = agentkit.scope_check(Path("."), "main", ["src/*.py"])
         self.assertEqual(output["status"], "IN_SCOPE")
 
@@ -288,30 +282,24 @@ class ScopeTests(unittest.TestCase):
 
 class BlackTests(unittest.TestCase):
     def test_black_check_has_no_write_flag_by_default(self):
-        proc = subprocess.CompletedProcess(
-            args=[], returncode=0, stdout="", stderr=""
-        )
+        proc = subprocess.CompletedProcess(args=[], returncode=0, stdout="", stderr="")
         with patch.object(agentkit.subprocess, "run", return_value=proc) as run:
             output, code = agentkit.black_check(Path("."), False, None)
         self.assertEqual(code, 0)
         args = run.call_args.args[0]
-        self.assertEqual(args[:5], [
-            agentkit.sys.executable, "-m", "black", "--check", "--diff"
-        ])
+        self.assertEqual(
+            args[:5], [agentkit.sys.executable, "-m", "black", "--check", "--diff"]
+        )
         self.assertEqual(output["mode"], "CHECK_ONLY")
 
     def test_black_skips_when_no_changed_python_files(self):
-        with patch.object(
-            agentkit, "changed_files", return_value=["README.md"]
-        ):
+        with patch.object(agentkit, "changed_files", return_value=["README.md"]):
             output, code = agentkit.black_check(Path("."), False, "main")
         self.assertEqual(code, 0)
         self.assertEqual(output["status"], "SKIPPED_NO_PYTHON_CHANGES")
 
     def test_black_apply_requires_explicit_mode(self):
-        proc = subprocess.CompletedProcess(
-            args=[], returncode=0, stdout="", stderr=""
-        )
+        proc = subprocess.CompletedProcess(args=[], returncode=0, stdout="", stderr="")
         with patch.object(agentkit.subprocess, "run", return_value=proc) as run:
             agentkit.black_check(Path("."), True, None)
         self.assertNotIn("--check", run.call_args.args[0])

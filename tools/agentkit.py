@@ -100,9 +100,12 @@ def validate(kind, data):
                 deps = []
             graph[task_id] = deps
             criteria = task.get("acceptance")
-            if not isinstance(criteria, list) or not criteria or any(
-                not isinstance(item, str) or not item.strip()
-                for item in criteria
+            if (
+                not isinstance(criteria, list)
+                or not criteria
+                or any(
+                    not isinstance(item, str) or not item.strip() for item in criteria
+                )
             ):
                 errors.append(f"{task_id}: acceptance precisa de texto(s).")
         for task_id, deps in graph.items():
@@ -356,8 +359,16 @@ def inspect_project(root):
 
 def changed_files(root, base):
     proc = subprocess.run(
-        ["git", "-C", str(root), "diff", "--name-only", "-z", "--diff-filter=ACMR",
-         f"{base}...HEAD"],
+        [
+            "git",
+            "-C",
+            str(root),
+            "diff",
+            "--name-only",
+            "-z",
+            "--diff-filter=ACMR",
+            f"{base}...HEAD",
+        ],
         check=False,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -366,15 +377,15 @@ def changed_files(root, base):
         raise ValueError(
             proc.stderr.decode("utf-8", "replace").strip() or "git diff falhou."
         )
-    return sorted(
-        {name for name in proc.stdout.decode("utf-8").split("\0") if name}
-    )
+    return sorted({name for name in proc.stdout.decode("utf-8").split("\0") if name})
 
 
 def scope_check(root, base, allow):
     files = changed_files(root, base)
     extras = [
-        path for path in files if not any(fnmatch.fnmatchcase(path, pat) for pat in allow)
+        path
+        for path in files
+        if not any(fnmatch.fnmatchcase(path, pat) for pat in allow)
     ]
     return {
         "status": "OUT_OF_SCOPE" if extras else "IN_SCOPE",
@@ -388,7 +399,8 @@ def scope_check(root, base, allow):
 def black_check(root, apply, base):
     if base:
         files = [
-            name for name in changed_files(root, base)
+            name
+            for name in changed_files(root, base)
             if name.endswith(".py") and (root / name).is_file()
         ]
         if not files:
