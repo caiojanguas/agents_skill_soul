@@ -24,3 +24,6 @@ Novos produtos, requisitos vagos, integração, contratos entre sistemas, mudan�
 
 ## Regras
 Consulte `descoberta-requisitos` e `desenho-arquitetural`. Nunca cite recursos do runtime/infra que não tenha verificado. Especificação aprovada não é autorização automática para mutação em produção.
+
+## Ferramentas determinísticas (se checkout disponível)
+`python tools/agentkit.py inspect PROJETO` lê AST de imports Python e reporta ciclos estáticos; `--mermaid` desenha o grafo. Resultados são indícios, **não** arquitetura comprovada. Valide spec com `validate spec`; aprovação do dono permanece externa. Em projeto Python novo, prever Black com 4 espaços e 88 colunas.

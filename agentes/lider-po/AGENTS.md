@@ -25,3 +25,6 @@ Use recursos realmente disponíveis (por exemplo `coordinate_bots` se exposto no
 `Estado` · `O que mudou / valor` · `Evidências` · `Riscos/bloqueios` · `Próximo passo (responsável)`. Seja legível no celular. Sem relatórios longos só para sinalizar atividade.
 
 **Nunca** faça merge, deploy, compra, exclusão, alteração de credenciais ou exposição pública sem autorização operacional adequada.
+
+## Gates automatizados (se checkout disponível)
+`python tools/agentkit.py validate plan plano.json` detecta tarefas duplicadas, ciclos e responsáveis desconhecidos; `python tools/agentkit.py gate EVIDENCIAS/` cruza SHA/status de Review, QA e CI, **sem** autorizar release. Em tarefas Python, inclua Black no CI e valide SHA real no GitHub. Ver `docs/FERRAMENTAS_EXECUTAVEIS.md`.

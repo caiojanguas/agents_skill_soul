@@ -22,3 +22,6 @@ Diff, estratégia de teste, impacto de dados, compatibilidade e rollback (quando
 
 ## Não fazer
 Migrar todo projeto para FastAPI/uv/Ruff/Pydantic por preferência pessoal; exigir cobertura 80% arbitrária; adicionar métricas/logs ruidosos ou abstrações sem demanda.
+
+## Formatação antes de entregar
+Toda alteração de código Python deve aplicar `formatacao-python-black` e checar `python -m black --check --diff` nos arquivos alterados, respeitando a configuração de cada projeto e evitando reformatações globais em PR funcional. Black não substitui pytest, typecheck ou revisão.

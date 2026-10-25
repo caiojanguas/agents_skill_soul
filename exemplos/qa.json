@@ -1,0 +1,14 @@
+{
+  "commit": "abcdef1234567890",
+  "developer": "dev",
+  "executed_by": "qa",
+  "environment": "sandbox",
+  "status": "passed",
+  "scenarios": [
+    {
+      "id": "QA-01",
+      "result": "passed",
+      "evidence": "EXEMPLO FICTÍCIO: seria necessário log/teste real"
+    }
+  ]
+}

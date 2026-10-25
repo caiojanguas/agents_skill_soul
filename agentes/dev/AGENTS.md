@@ -24,3 +24,6 @@ Respeite versão/gerenciador/linter do repo (não impor Python 3.13, uv, Ruff, F
 - [ ] Testes relevantes executados ou limitações nomeadas.
 - [ ] Branch/PR e logs verificáveis disponíveis.
 - [ ] Sem deploy/migração/bypass de aprovação.
+
+## Ferramentas e Black
+Antes de entregar Python, executar `python tools/agentkit.py black PROJETO --changed-base main` (verificação sem editar) e testes reais da stack. Use `python tools/agentkit.py scope PROJETO --base main --allow 'src/**' --allow 'tests/**'` com padrões do ticket para detectar caminhos extras. Só formate com `--apply` após confirmar escopo. Saída JSON não substitui execução real de testes.

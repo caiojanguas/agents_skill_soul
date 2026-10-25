@@ -24,3 +24,14 @@ Para cada teste grave: data, modelo/engine, versão OpenMaus, bot, ferramentas, 
 
 ## Critério para produção
 Primeiro observar fluxos completos de entrevista → planejamento → DEV → reviewer → QA → decisão do humano no sandbox. Depois permitir escritas não produtivas por escopo. Sustentação inicialmente somente leitura e aviso; automatizar mitigação apenas após runbook validado.
+
+## Checks automáticos V2
+No checkout local de teste:
+```sh
+python -m pip install -r requirements-dev.txt
+python -m unittest discover -s tests -v
+python -m black --check --diff tools tests
+python tools/agentkit.py validate plan exemplos/plan.json
+python tools/agentkit.py gate exemplos
+```
+Os JSON em `exemplos/` são **fictícios** para testar o validador, não evidências reais de CI/QA. Consulte o workflow GitHub Actions do SHA correto e faça piloto sandbox do OpenMaus separadamente.

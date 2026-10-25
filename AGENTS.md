@@ -18,3 +18,6 @@ Este repositório é uma **biblioteca de instruções**, não o código-fonte da
 - Não presuma ferramentas disponíveis; `AGENTS.md` não concede privilégio.
 - Teste alterações com `docs/AVALIACAO.md`, expondo o que não foi executado.
 - Use branch e PR; nunca faça merge automático nem altere produção ao atualizar esta biblioteca.
+
+## Política Python obrigatória para o time
+Use [psf/black](https://github.com/psf/black) como formatador para Python: `python -m black --check --diff arquivos.py`; aplicar `python -m black arquivos.py` só com escopo autorizado. Novos projetos: 4 espaços, 88 colunas, versão fixada no ambiente de desenvolvimento e gate no CI. Em código legado: adotar progressivamente sem misturar reforma geral e bugfix. Outras linguagens usam seus formatadores próprios. `tools/agentkit.py` valida estruturas, nunca autoriza merge/deploy.

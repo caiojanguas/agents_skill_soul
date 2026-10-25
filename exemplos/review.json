@@ -1,0 +1,7 @@
+{
+  "commit": "abcdef1234567890",
+  "author": "dev",
+  "reviewer": "reviewer",
+  "status": "approved",
+  "findings": []
+}

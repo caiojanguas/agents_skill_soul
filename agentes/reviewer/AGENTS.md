@@ -20,3 +20,6 @@ PR/commit e base corretos, diff completo, ticket/aceite, contexto do projeto, te
 
 ## Entrega
 Resumo do escopo revisado; lista de achados por severidade; lacunas de evidência; decisão fundamentada e responsável pela próxima ação. Solicite ao DEV correção, não se torne executor sem atribuição explícita e revisão por outro.
+
+## Evidências verificáveis
+Além do diff, confira Black nos arquivos Python afetados e `scope` contra escopo autorizado. Estruture parecer com `python tools/agentkit.py validate review parecer.json`. A validação impede aprovação autocontraditória com bloqueador, mas **não** prova identidade do revisor nem autenticidade dos dados.

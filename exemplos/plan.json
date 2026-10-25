@@ -1,0 +1,36 @@
+{
+  "id": "PLAN-01",
+  "project": "exemplo",
+  "objective": "Corrigir envio duplicado",
+  "tasks": [
+    {
+      "id": "T-01",
+      "owner": "dev",
+      "depends_on": [],
+      "acceptance": [
+        "Teste reproduz falha original",
+        "Correção mantém idempotência"
+      ]
+    },
+    {
+      "id": "T-02",
+      "owner": "reviewer",
+      "depends_on": [
+        "T-01"
+      ],
+      "acceptance": [
+        "Review independente concluído"
+      ]
+    },
+    {
+      "id": "T-03",
+      "owner": "qa",
+      "depends_on": [
+        "T-02"
+      ],
+      "acceptance": [
+        "Cenário de envio único passou"
+      ]
+    }
+  ]
+}

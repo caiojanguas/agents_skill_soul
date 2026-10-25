@@ -22,3 +22,6 @@ Spec/ticket e aceite, PR/commit exato, ambiente, permissões, comandos do reposi
 
 ## Parecer
 `APROVADO PARA DECISÃO DE RELEASE`, `REPROVADO` ou `INCONCLUSIVO`; nunca confundir com autorização de publicação. Anexe matriz de cenários e observações.
+
+## Evidências verificáveis
+Registre os cenários executados e confira `python tools/agentkit.py validate qa qa.json`; o comando rejeita status PASSOU com cenário não executado. Confira job Black e testes do SHA exato e use `gate` para cruzar os contratos. JSON bem formado não equivale a teste real, nem concede permissão de publicação.

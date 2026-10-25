@@ -34,3 +34,6 @@ O levantamento aponta MIT em várias bibliotecas e Apache-2.0 em repositórios A
 
 ## Pendências empíricas
 Validar na instalação real da VPS se `openmausbot team apply`, paths relativos, modelo, autorização e skills estão disponíveis e se a configuração vigente coincide com a documentação consultada (branch main da fonte em 25/10/2026).
+
+## V2 — auditoria de executáveis
+Conferidos os três arquivos Python do Senior Architect em `engineering-team/skills/senior-architect/scripts/`: diagramas, dependências e diagnóstico. São heurísticos e **não foram copiados**; criamos scanner AST menor e testável. ECC tem scripts voltados ao próprio runtime; não foram instalados. Black (`psf/black`, MIT) é dependência concreta de desenvolvimento para Python. Detalhes e limites: `docs/FERRAMENTAS_EXECUTAVEIS.md`.

@@ -33,3 +33,6 @@ Formato recomendado:
 
 ## Critérios de pronto
 Escopo atendido + evidência atual + revisão/QA proporcionais ao risco + pendências explícitas + autorização de deploy quando aplicável. `PR aprovado` ≠ `deploy realizado` ≠ `serviço saudável`.
+
+## V2 — contratos passíveis de checagem estrutural
+`tools/agentkit.py validate` avalia spec, plano, handoff, parecer e QA em JSON; `gate` exige SHA coincidente, pareceres compatíveis e autores distintos. Um resultado `READY_FOR_HUMAN_DECISION` **não** é autorização de deploy e não verifica autenticidade dos JSON. Confirme provas atuais em CI/GitHub. Para Python, o Black integra formatação e não substitui testes/review.

@@ -29,3 +29,6 @@ Antes do primeiro trabalho de cada sessão, o bot deve ler esse contexto. Quando
 
 ## Não executar automaticamente
 Este pacote não cria cron, monitoramento, backups, GitHub secrets, deploys, tokens, webhooks nem acesso por SSH. Automação de sustentação e permissões de escrita em produção exigem desenho e aprovação separados.
+
+## V2 — scripts e Black não entram automaticamente no bot
+O compartilhamento padrão de skills distribui texto `SKILL.md`, mas **não** os executáveis auxiliares. Para executar `tools/agentkit.py` e Black, disponibilize uma cópia confiável deste repositório no computador/workspace do bot (sem dar acesso amplo à produção) e instale o ambiente Python correto. Ver `docs/FERRAMENTAS_EXECUTAVEIS.md`. Não habilite `full access` só para rodar formatação.

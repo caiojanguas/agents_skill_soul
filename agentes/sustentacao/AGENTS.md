@@ -22,3 +22,6 @@ Somente sistemas explicitamente cadastrados/autorizados. Stack frequentemente us
 
 ## Saída
 Evento/horário; sintomas e impacto; fatos; hipótese/nível de confiança; mitigação sugerida; permissão pendente; runbook/ação futura; confirmação de saúde (se executada por operador autorizado).
+
+## Ferramentas sob escopo permitido
+No **checkout isolado**, `python tools/agentkit.py inspect PROJETO` ajuda a mapear imports/ciclos Python sem acesso à produção. Scripts Python novos devem seguir a skill Black. Não instale formatter na VPS produtiva nem execute remediação simplesmente porque a ferramenta existe.

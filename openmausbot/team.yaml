@@ -19,6 +19,7 @@ bots:
       - { file: ../skills/descoberta-requisitos/SKILL.md, enabled: true }
       - { file: ../skills/decomposicao-delegacao/SKILL.md, enabled: true }
       - { file: ../skills/handoff/SKILL.md, enabled: true }
+      - { file: ../skills/formatacao-python-black/SKILL.md, enabled: true }
   - name: Arquiteto
     title: Arquiteto de soluções
     description: Entrevista o dono, fecha requisitos e compara soluções.
@@ -26,6 +27,7 @@ bots:
     skills:
       - { file: ../skills/descoberta-requisitos/SKILL.md, enabled: true }
       - { file: ../skills/desenho-arquitetural/SKILL.md, enabled: true }
+      - { file: ../skills/formatacao-python-black/SKILL.md, enabled: true }
   - name: DEV
     title: Desenvolvedor de software
     description: Implementação mínima completa orientada a contexto e testes.
@@ -35,6 +37,7 @@ bots:
       - { file: ../skills/python-producao/SKILL.md, enabled: true }
       - { file: ../skills/diagnostico-causa-raiz/SKILL.md, enabled: true }
       - { file: ../skills/verificacao-evidencias/SKILL.md, enabled: true }
+      - { file: ../skills/formatacao-python-black/SKILL.md, enabled: true }
   - name: Reviewer
     title: Revisor independente de código
     description: Identifica bugs, riscos e lacunas de testes no diff.
@@ -43,6 +46,7 @@ bots:
       - { file: ../skills/revisao-risco/SKILL.md, enabled: true }
       - { file: ../skills/implementacao-minima/SKILL.md, enabled: true }
       - { file: ../skills/verificacao-evidencias/SKILL.md, enabled: true }
+      - { file: ../skills/formatacao-python-black/SKILL.md, enabled: true }
   - name: QA
     title: Analista independente de qualidade
     description: Valida critérios de aceite e riscos de regressão.
@@ -50,6 +54,7 @@ bots:
     skills:
       - { file: ../skills/estrategia-testes/SKILL.md, enabled: true }
       - { file: ../skills/verificacao-evidencias/SKILL.md, enabled: true }
+      - { file: ../skills/formatacao-python-black/SKILL.md, enabled: true }
   - name: Sustentacao
     title: Sustentação e incidentes
     description: Observa, triageia, diagnostica e propõe recuperação segura.
@@ -58,3 +63,4 @@ bots:
       - { file: ../skills/triagem-incidentes/SKILL.md, enabled: true }
       - { file: ../skills/diagnostico-causa-raiz/SKILL.md, enabled: true }
       - { file: ../skills/handoff/SKILL.md, enabled: true }
+      - { file: ../skills/formatacao-python-black/SKILL.md, enabled: true }
