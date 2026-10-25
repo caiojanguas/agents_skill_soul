@@ -1,0 +1,41 @@
+name: Validacao da biblioteca de agentes
+
+on:
+  push:
+    branches: ["feat/**", "main"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  agentkit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Instalar formatter
+        run: python -m pip install -r requirements-dev.txt
+      - name: Compilar scripts e testes
+        run: python -m compileall -q tools tests
+      - name: Testes determinísticos
+        run: python -m unittest discover -s tests -v
+      - name: Black (não altera arquivos)
+        run: python -m black --check --diff tools tests
+      - name: Validar artefatos de exemplo
+        run: |
+          python tools/agentkit.py validate plan exemplos/plan.json
+          python tools/agentkit.py validate review exemplos/review.json
+          python tools/agentkit.py validate qa exemplos/qa.json
+          python tools/agentkit.py validate ci exemplos/ci.json
+          python tools/agentkit.py gate exemplos

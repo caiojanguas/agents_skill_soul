@@ -1,0 +1,28 @@
+name: Black Python — politica compartilhada
+
+on:
+  workflow_call:
+    inputs:
+      check_path:
+        description: "Diretorio ou arquivo Python a conferir (default: repositorio inteiro)"
+        required: false
+        type: string
+        default: "."
+
+permissions:
+  contents: read
+
+jobs:
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Instalar Black versionado
+        run: python -m pip install black==26.10.0
+      - name: Conferir formatacao sem editar
+        env:
+          BLACK_CHECK_PATH: ${{ inputs.check_path }}
+        run: python -m black --check --diff "$BLACK_CHECK_PATH"

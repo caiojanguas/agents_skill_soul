@@ -1,0 +1,2 @@
+# Versão fixa para formatar/testar este repositório; projetos podem gerir pin próprio.
+black==26.10.0

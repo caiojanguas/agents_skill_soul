@@ -1,0 +1,3 @@
+# Adapte ao pyproject.toml existente; não substitua o arquivo inteiro.
+[tool.black]
+line-length = 88
