@@ -23,4 +23,6 @@ jobs:
       - name: Instalar Black versionado
         run: python -m pip install black==26.10.0
       - name: Conferir formatacao sem editar
-        run: python -m black --check --diff "${{ inputs.check_path }}"
+        env:
+          BLACK_CHECK_PATH: ${{ inputs.check_path }}
+        run: python -m black --check --diff "$BLACK_CHECK_PATH"
