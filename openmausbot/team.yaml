@@ -1,0 +1,60 @@
+# Equipe de engenharia — OpenMausBot team apply v1
+# NÃO contém modelo, credenciais, cwd nem escolha de computador.
+# Revise o dry-run e os níveis de aprovação reais antes de aplicar.
+version: 1
+defaults:
+  team: Engenharia
+  approval: ask
+teams:
+  - name: Engenharia
+    brief: { file: ../governanca/BRIEF.md }
+    prune: false
+bots:
+  - name: Lider
+    title: Lider técnico e PO
+    description: Coordena escopo, prioridades, tarefas, entregas e evidências.
+    chief: true
+    soul: { file: ../agentes/lider-po/SOUL.md }
+    skills:
+      - { file: ../skills/descoberta-requisitos/SKILL.md, enabled: true }
+      - { file: ../skills/decomposicao-delegacao/SKILL.md, enabled: true }
+      - { file: ../skills/handoff/SKILL.md, enabled: true }
+  - name: Arquiteto
+    title: Arquiteto de soluções
+    description: Entrevista o dono, fecha requisitos e compara soluções.
+    soul: { file: ../agentes/arquiteto/SOUL.md }
+    skills:
+      - { file: ../skills/descoberta-requisitos/SKILL.md, enabled: true }
+      - { file: ../skills/desenho-arquitetural/SKILL.md, enabled: true }
+  - name: DEV
+    title: Desenvolvedor de software
+    description: Implementação mínima completa orientada a contexto e testes.
+    soul: { file: ../agentes/dev/SOUL.md }
+    skills:
+      - { file: ../skills/implementacao-minima/SKILL.md, enabled: true }
+      - { file: ../skills/python-producao/SKILL.md, enabled: true }
+      - { file: ../skills/diagnostico-causa-raiz/SKILL.md, enabled: true }
+      - { file: ../skills/verificacao-evidencias/SKILL.md, enabled: true }
+  - name: Reviewer
+    title: Revisor independente de código
+    description: Identifica bugs, riscos e lacunas de testes no diff.
+    soul: { file: ../agentes/reviewer/SOUL.md }
+    skills:
+      - { file: ../skills/revisao-risco/SKILL.md, enabled: true }
+      - { file: ../skills/implementacao-minima/SKILL.md, enabled: true }
+      - { file: ../skills/verificacao-evidencias/SKILL.md, enabled: true }
+  - name: QA
+    title: Analista independente de qualidade
+    description: Valida critérios de aceite e riscos de regressão.
+    soul: { file: ../agentes/qa/SOUL.md }
+    skills:
+      - { file: ../skills/estrategia-testes/SKILL.md, enabled: true }
+      - { file: ../skills/verificacao-evidencias/SKILL.md, enabled: true }
+  - name: Sustentacao
+    title: Sustentação e incidentes
+    description: Observa, triageia, diagnostica e propõe recuperação segura.
+    soul: { file: ../agentes/sustentacao/SOUL.md }
+    skills:
+      - { file: ../skills/triagem-incidentes/SKILL.md, enabled: true }
+      - { file: ../skills/diagnostico-causa-raiz/SKILL.md, enabled: true }
+      - { file: ../skills/handoff/SKILL.md, enabled: true }
