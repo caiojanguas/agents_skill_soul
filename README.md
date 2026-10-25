@@ -35,3 +35,5 @@ Versão inicial para revisão. Nenhum teste contra a instância real da VPS foi 
 ## V2 — ferramentas executáveis e Black
 
 A biblioteca agora contém `tools/agentkit.py`, testes unitários, contratos JSON, EditorConfig, `pyproject.toml` e GitHub Actions. Consulte [ferramentas executáveis](docs/FERRAMENTAS_EXECUTAVEIS.md) para comandos, limites e instalação. O Black é padrão de código **Python** (4 espaços, 88 colunas por padrão) nos novos projetos; para legados, adoção incremental sem refatoração massiva incidental. Não alcança linguagens não Python. Sem acesso real ao checkout e interpretador no OpenMaus, os scripts **não** rodam automaticamente.
+
+Para compartilhar a mesma checagem Black entre **repositórios diferentes**, veja [padrão de código e workflow reutilizável](docs/PADRAO_CODIGO.md); ele precisa ser habilitado explicitamente em cada projeto depois da revisão deste PR.

@@ -1,0 +1,16 @@
+# Copie para .github/workflows/python-format.yml em cada projeto Python.
+# Substitua REPLACE_WITH_COMMIT_SHA por SHA real da versao revisada na main
+# ou por tag imutavel. Enquanto o PR da biblioteca nao for mergeado,
+# este arquivo e apenas exemplo, NAO esta ativo nos demais projetos.
+name: Black Python
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+permissions:
+  contents: read
+jobs:
+  black:
+    uses: caiojanguas/agents_skill_soul/.github/workflows/black-reusable.yml@REPLACE_WITH_COMMIT_SHA
+    with:
+      check_path: "."

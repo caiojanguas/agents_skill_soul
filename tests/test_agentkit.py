@@ -27,6 +27,21 @@ class ArtifactTests(unittest.TestCase):
         )
         self.assertEqual(result, [])
 
+    def test_approved_spec_requires_approval_reference(self):
+        data = {
+            "id": "S-1",
+            "project": "demo",
+            "objective": "Reliable events",
+            "status": "approved",
+            "in_scope": ["record events"],
+            "out_of_scope": [],
+            "acceptance_criteria": ["event is unique"],
+            "unknowns": [],
+        }
+        self.assertTrue(agentkit.validate("spec", data))
+        data["approval_reference"] = "https://example.com/decision-1"
+        self.assertEqual(agentkit.validate("spec", data), [])
+
     def test_spec_rejects_missing_acceptance(self):
         self.assertTrue(
             agentkit.validate(
@@ -244,6 +259,10 @@ class InspectionTests(unittest.TestCase):
         self.file("app.py", "import json\n")
         report = agentkit.inspect_project(self.root)
         self.assertEqual(report["python_modules"], 1)
+
+    def test_unknown_project_is_error(self):
+        with self.assertRaisesRegex(ValueError, "inexistente"):
+            agentkit.inspect_project(self.root / "missing")
 
     def test_syntax_failure_returns_warning(self):
         self.file("bad.py", "def broken(:\n")

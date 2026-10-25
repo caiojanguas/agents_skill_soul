@@ -67,10 +67,13 @@ def validate(kind, data):
             for item in items(key, nonempty=key == "acceptance_criteria"):
                 if not isinstance(item, str) or not item.strip():
                     errors.append(f"{key}: itens precisam ser textos não vazios.")
-        if data.get("status") == "approved":
+        if data.get("status") == "approved" and not (
+            isinstance(data.get("approval_reference"), str)
+            and data["approval_reference"].strip()
+        ):
             errors.append(
-                "Uma especificação não prova consentimento humano: "
-                "confirme a aprovação no runtime, fora deste JSON."
+                "approval_reference: link/registro obrigatório; "
+                "é necessária conferência humana no runtime."
             )
 
     elif kind == "plan":
@@ -285,6 +288,8 @@ def python_modules(root):
 def inspect_project(root):
     """Only literal Python imports; not runtime architecture or proof of coupling."""
     root = Path(root).resolve()
+    if not root.is_dir():
+        raise ValueError(f"Projeto inexistente ou não é diretório: {root}")
     modules, warnings = python_modules(root)
     available = set(modules)
     edges = set()
@@ -366,7 +371,7 @@ def changed_files(root, base):
             "diff",
             "--name-only",
             "-z",
-            "--diff-filter=ACMR",
+            "--diff-filter=ACMRD",
             f"{base}...HEAD",
         ],
         check=False,
